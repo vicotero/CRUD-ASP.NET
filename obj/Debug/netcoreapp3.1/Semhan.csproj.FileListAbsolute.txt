@@ -67,3 +67,7 @@ C:\Users\mvick\Documents\Trabajo\Semhan\bin\Debug\netcoreapp3.1\Microsoft.Bcl.As
 C:\Users\mvick\Documents\Trabajo\Semhan\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\mvick\Documents\Trabajo\Semhan\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\mvick\Documents\Trabajo\Semhan\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\mvick\Documents\Trabajo\Semhan\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\mvick\Documents\Trabajo\Semhan\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\mvick\Documents\Trabajo\Semhan\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\mvick\Documents\Trabajo\Semhan\obj\Debug\netcoreapp3.1\Razor\Views\Home\crearUsuario.cshtml.g.cs

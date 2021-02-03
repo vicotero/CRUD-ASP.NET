@@ -26,5 +26,17 @@ namespace Semhan.Controllers
             return View(usuarios); //retorna lista usuarios
 
         }
+
+        public async Task<IActionResult> crearUsuario()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> crearUsuarioPost([FromBody]UsuarioSet usuarioAlta)
+        {
+            return View();
+        }
+
     }
 }

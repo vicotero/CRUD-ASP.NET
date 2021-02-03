@@ -9,6 +9,7 @@ namespace Semhan.ViewModels
     {
         public string nombre { get; set; }
         public int id{ get; set; }
+        public int apellido { get; set; }
 
 
     }

@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Semhan.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,9 @@ namespace Semhan
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();
             services.AddRazorPages();
+            services.AddDbContext<clientesContext>(x =>
+                x.UseLazyLoadingProxies()
+                 .UseMySQL("Server=localhost;Database=clientes;Port=3306;Uid=root;sslMode=None;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
