@@ -35,8 +35,66 @@ namespace Semhan.Controllers
         [HttpPost]
         public async Task<IActionResult> crearUsuarioPost([FromBody]UsuarioSet usuarioAlta)
         {
-            return View();
+            clientesContext db = new clientesContext();
+            UsuarioSet nuevoUsuario = new UsuarioSet
+            {
+                nombre = usuarioAlta.nombre,
+                apellido = usuarioAlta.apellido
+            };
+
+            db.UsuarioSet.Add(nuevoUsuario);
+            await db.SaveChangesAsync();
+
+            return Json(new {succes = true });
         }
+
+        public async Task<IActionResult> eliminarUsuario(int usuarioId)
+        {
+            try
+            {
+                clientesContext db = new clientesContext();
+                var usuario = UsuarioSet.ObtenerUsuarioPorId(db, usuarioId).Result;
+                db.UsuarioSet.Remove(usuario);
+                await db.SaveChangesAsync();
+
+            }
+            catch
+            {
+
+            }
+            return Redirect("Index");
+        }
+
+        public async Task<IActionResult> editarUsuario(int usuarioId)
+        {
+            clientesContext db = new clientesContext();
+            var usuario = UsuarioSet.ObtenerUsuarioPorId(db,usuarioId).Result;
+            UsuarioSet datosUsuario = new UsuarioSet
+            {
+                id = usuarioId,
+                nombre = usuario.nombre,
+                apellido = usuario.apellido
+
+            };
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> editarUsuarioPost([FromBody]UsuarioSet usuarioEditado)
+        {
+            clientesContext db = new clientesContext();
+            var usuario = UsuarioSet.ObtenerUsuarioPorId(db, usuarioEditado.id).Result;
+            usuario.nombre = usuarioEditado.nombre;
+            usuario.apellido = usuarioEditado.apellido;
+
+            db.Update(usuario);
+            await db.SaveChangesAsync();
+
+            return Json(new { succes = true });
+        }
+    
+
+
 
     }
 }

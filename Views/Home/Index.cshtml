@@ -32,20 +32,16 @@
 
                     <td>
 
-                        <div class="btn-group" style="float: right">
 
+                        <div class="btn-group" style="float: right">
                             <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                Ações
+                                Acciones
                                 <i class="fa fa-angle-down"></i>
                             </button>
-
-
                             <ul class="dropdown-menu" role="menu">
-
-
-                                <li><a href="@Url.Action("EditarUsuario", "Usuarios", new { usuarioId = usuario.id })">Editar</a></li>
-                                <li><a href='#' onclick="confirm('¿Está seguro que quiere dar de baja a ' + '@usuario.nombre?') ? window.location = '@Url.Action("DarDeBajaUsuario", "Usuarios", new { usuarioId = usuario.id })' : null" data-nombre="@usuario.nombre">Cancelar subscrição</a></li>
-                                <li><a href="#myModal" class="btnAdminstrar" data-toggle="modal" data-id="@usuario.id">Gerenciar campanhas</a></li>
+                                
+                        <li><a href="@Url.Action("editarUsuario", "Home", new { usuarioId = usuario.id })">Editar</a></li>
+                                            <li><a href='#' onclick="confirm('¿Está seguro que quiere dar de baja a ' + '@usuario.nombre?') ? window.location = '@Url.Action("eliminarUsuario", "Home", new { usuarioId = usuario.id })' : null" data-nombre="@usuario.nombre">Dar de baja</a></li>}
 
 
 

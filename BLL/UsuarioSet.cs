@@ -15,6 +15,12 @@ namespace Semhan
 
         }
 
+        public static async Task<UsuarioSet> ObtenerUsuarioPorId (clientesContext db, int usuarioId)
+        {
+            return await db.UsuarioSet.Where(x => x.id == usuarioId).FirstOrDefaultAsync();
+
+        }
+
     }
 
    
