@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Semhan.ViewModels
 {
-    public class UsuarioViewModel
+    public class UsuarioEdicionViewModel
     {
         public string nombre { get; set; }
-        public int id{ get; set; }
-        public int apellido { get; set; }
+        public int id { get; set; }
+        public string apellido { get; set; }
 
 
     }

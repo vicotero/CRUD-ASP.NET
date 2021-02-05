@@ -80,7 +80,7 @@ namespace Semhan.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> editarUsuarioPost([FromBody]UsuarioSet usuarioEditado)
+        public async Task<IActionResult> editarUsuario(UsuarioEdicionViewModel usuarioEditado)
         {
             clientesContext db = new clientesContext();
             var usuario = UsuarioSet.ObtenerUsuarioPorId(db, usuarioEditado.id).Result;
@@ -90,7 +90,7 @@ namespace Semhan.Controllers
             db.Update(usuario);
             await db.SaveChangesAsync();
 
-            return Json(new { succes = true });
+            return Redirect("Index");
         }
     
 
