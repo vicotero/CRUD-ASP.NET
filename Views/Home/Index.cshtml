@@ -8,45 +8,512 @@
 <link href="~/css/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
 <link href="~/css/font-awesome/css/regular.min.css" rel="stylesheet" />
 <link href="~/css/font-awesome/css/solid.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 
-<style>
-    .container-table {
-        padding: 5% 150px 0px 150px;
-    }
-</style>
+@*<style>
 
-<center><h1>CRUD de Vicky 😜</h1></center>
-<div class="container-table">
 
-    <a type="button" class="btn btn-success" href='@Url.Action("crearUsuario", "Home")' style="float:right; margin-top:30px; margin-bottom:10px; margin-right:15px">Agregar Usuario <i class="fas fa-user-plus"></i></a>
-    <table id="Tabla" class="table table-striped table-bordered" style="width:100%">
-        <thead class="table-dark table-striped">
-            <tr>
-                <th>Id</th>
-                <th style=background-color:#FF5C5C;font-weight:900;color:#ffffff;text-align:center;>Nombre</th>
-                <th style=background-color:#48973E;font-weight:900;color:#ffffff;text-align:center;>Apellido</th>
-                <th>Acciones</th>
 
-            </tr>
-        </thead>
+        h1 {
+            font-size: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-        <tbody class="table-hover">
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
 
-            @foreach (var usuario in Model)
-            {
+        .tbl-header {
+            background-color: rgba(255,255,255,0.3);
+        }
 
-                <tr>
-                    <td>@usuario.id</td>
-                    <td>@usuario.nombre</td>
-                    <td>@usuario.apellido</td>
+        .tbl-content {
+            height: 300px;
+            overflow-x: auto;
+            margin-top: 0px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
 
-                    <td>
-                        <a class="btn btn-success" href="@Url.Action("editarUsuario", "Home", new { usuarioId = usuario.id })"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href='#' onclick="confirm('¿Está seguro que quiere dar de baja a ' + '@usuario.nombre?') ? window.location = '@Url.Action("eliminarUsuario", "Home", new { usuarioId = usuario.id })' : null" data-nombre="@usuario.nombre"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
+        th {
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 12px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 300;
+            font-size: 12px;
+            color: #fff;
+            border-bottom: solid 1px rgba(255,255,255,0.1);
+        }
+
+
+        /* demo styles */
+
+        @@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+        body {
+            background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+            background: linear-gradient(to right, #25c481, #25b7c4);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        section {
+            margin: 50px;
+        }
+
+        /* follow me template */
+        .made-with-love {
+            margin-top: 40px;
+            padding: 10px;
+            clear: left;
+            text-align: center;
+            font-size: 10px;
+            font-family: arial;
+            color: #fff;
+        }
+
+            .made-with-love i {
+                font-style: normal;
+                color: #F50057;
+                font-size: 14px;
+                position: relative;
+                top: 2px;
             }
-        </tbody>
-    </table>
-</div>
 
+            .made-with-love a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+                .made-with-love a:hover {
+                    text-decoration: underline;
+                }
+
+
+        /* for custom scrollbar for webkit browser*/
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+
+        /*css footer*/
+
+        .footer-basic {
+            padding: 40px 0;
+            /*background-color: #ffffff;*/
+            color: #4b4c4d;
+            font-family: 'Roboto', sans-serif;
+            background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+            background: linear-gradient(to right, #25c481, #25b7c4);
+        }
+
+            .footer-basic ul {
+                padding: 0;
+                list-style: none;
+                text-align: center;
+                font-size: 18px;
+                line-height: 1.6;
+                margin-bottom: 0;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .footer-basic li {
+                padding: 0 10px;
+            }
+
+            .footer-basic ul a {
+                color: inherit;
+                text-decoration: none;
+                opacity: 0.8;
+            }
+
+                .footer-basic ul a:hover {
+                    opacity: 1;
+                }
+
+            .footer-basic .social {
+                text-align: center;
+                padding-bottom: 25px;
+            }
+
+                .footer-basic .social > a {
+                    font-size: 33px;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    display: inline-block;
+                    text-align: center;
+                    border-radius: 50%;
+                    border: 1px solid #ccc;
+                    margin: 0 8px;
+                    color: inherit;
+                    opacity: 0.75;
+                }
+
+                    .footer-basic .social > a:hover {
+                        opacity: 0.9;
+                    }
+
+            .footer-basic .copyright {
+                margin-top: 15px;
+                text-align: center;
+                font-size: 13px;
+                color: #aaa;
+                margin-bottom: 0;
+            }
+    </style>*@
+@*<style>
+        .container-table {
+            padding: 5% 150px 0px 150px;
+        }
+    </style>
+
+    <center><h1>CRUD de Vicky 😜</h1></center>
+    <div class="container-table">
+
+        <a type="button" class="btn btn-success" href='@Url.Action("crearUsuario", "Home")' style="float:right; margin-top:30px; margin-bottom:10px; margin-right:15px">Agregar Usuario <i class="fas fa-user-plus"></i></a>
+        <table id="Tabla" class="table table-striped table-bordered" style="width:100%">
+            <thead class="table-dark table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th style=background-color:#FF5C5C;font-weight:900;color:#ffffff;text-align:center;>Nombre</th>
+                    <th style=background-color:#48973E;font-weight:900;color:#ffffff;text-align:center;>Apellido</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+
+            <tbody class="table-hover">
+
+                @foreach (var usuario in Model)
+                {
+
+                    <tr>
+                        <td>@usuario.id</td>
+                        <td>@usuario.nombre</td>
+                        <td>@usuario.apellido</td>
+
+                        <td>
+                            <a class="btn btn-success" href="@Url.Action("editarUsuario", "Home", new { usuarioId = usuario.id })"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href='#' onclick="confirm('¿Está seguro que quiere dar de baja a ' + '@usuario.nombre?') ? window.location = '@Url.Action("eliminarUsuario", "Home", new { usuarioId = usuario.id })' : null" data-nombre="@usuario.nombre"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>*@
+
+
+@*<body>
+        <section>
+            <h1>CRUD de Vicky 😜</h1>
+
+
+
+                <div class="tbl-header">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tbl-content">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                            @foreach (var usuario in Model)
+                            {
+
+                                <tr>
+                                    <td>@usuario.id</td>
+                                    <td>@usuario.nombre</td>
+                                    <td>@usuario.apellido</td>
+
+                                    <td>
+                                        <a class="btn btn-success" href="@Url.Action("editarUsuario", "Home", new { usuarioId = usuario.id })"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href='#' onclick="confirm('¿Está seguro que quiere dar de baja a ' + '@usuario.nombre?') ? window.location = '@Url.Action("eliminarUsuario", "Home", new { usuarioId = usuario.id })' : null" data-nombre="@usuario.nombre"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <a type="button" class="btn btn-success" href='@Url.Action("crearUsuario", "Home")' style="float:right; margin-top:30px; margin-bottom:10px; margin-right:15px">Agregar Usuario <i class="fas fa-user-plus"></i></a>
+        </section>
+    </body>
+
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="icon ion-social-instagram"></i></a>
+                <a href="#"><i class="icon ion-social-snapchat"></i></a>
+                <a href="#"><i class="icon ion-social-twitter"></i></a>
+                <a href="#"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Company Name ©MariaVictoriaOtero 2021</p>
+        </footer>
+    </div>
+
+
+    <script>
+        // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
+        $(window).on("load resize ", function () {
+            var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+            $('.tbl-header').css({ 'padding-right': scrollWidth });
+        }).resize();
+
+        $(#IdTabla).DataTable(){
+
+        };
+
+
+    </script>*@
+
+<script src="https://use.fontawesome.com/bf66789927.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+    <body>
+        <div id="gradient">
+            <h1>CRUD de Vicky 😜</h1>
+            <nav>
+                <a type="button" class="btn btn-outline-danger" href='@Url.Action("crearUsuario", "Home")'>Agregar Usuario <i class="fas fa-user-plus"></i></a>
+            </nav>
+            <table class="listado">
+                <thead>
+                    <tr>
+                        <th><h2>Id</h2></th>
+                        <th><h2>Nombre</h2></th>
+                        <th><h2>Apellido</h2></th>
+                        <th colspan="2"><h2>Opciones</h2></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usuario in Model)
+                    {
+
+                        <tr>
+                            <td>@usuario.id</td>
+                            <td>@usuario.nombre</td>
+                            <td>@usuario.apellido</td>
+                            <td class="icono"><a href="@Url.Action("editarUsuario", "Home", new { usuarioId = usuario.id })"><span class="fa fa-pencil-square-o fa-2x"></span></a></td>
+                            <td class="icono"><a href='#' onclick="confirm('¿Está seguro que quiere dar de baja a ' + '@usuario.nombre?') ? window.location = '@Url.Action("eliminarUsuario", "Home", new { usuarioId = usuario.id })' : null" data-nombre="@usuario.nombre"><span class="fa fa-trash fa-2x"></span></a></td>
+                            @*<td class="icono"><a href="#"><span class="fa fa-pencil-square-o fa-2x"></span></a></td>
+                        <td class="icono"><a href="#"><span class="fa fa-trash fa-2x"></span></a></td>*@
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </body>
+
+    <style>
+            @@charset "UTF-8";
+            @@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+            /*body {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            line-height: 1.42em;
+            color: #4B4A4B;
+            background-color: #FFDAC4;
+            background: url(http://www.pixeden.com/media/k2/galleries/131/002-subtle-light-pattern-background-texture.jpg);
+        }*/
+
+            body {
+                background-color: #000000;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            #gradient {
+                width: 100%;
+                height: 100%;
+                padding: 1px;
+                margin: 0px;
+            }
+
+            nav {
+                text-align: center;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 3em;
+                font-weight: 300;
+                line-height: 1em;
+                text-align: center;
+                color: white;
+                margin: 30px;
+            }
+
+            .listado th h2 {
+                font-weight: bold;
+                font-size: 1em;
+                text-align: left;
+                color: #FFFFFF;
+            }
+
+            .listado td {
+                font-weight: normal;
+                font-size: 1em;
+                -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+                -moz-box-shadow: 0 2px 2px -2px #0E1119;
+                box-shadow: 0 2px 2px -2px #0E1119;
+            }
+
+            .listado {
+                text-align: left;
+                overflow: hidden;
+                width: 80%;
+                margin: 0 auto;
+                display: table;
+                padding: 0 0 8em 0;
+            }
+
+                .listado td, .listado th {
+                    padding-bottom: 2%;
+                    padding-top: 2%;
+                    padding-left: 2%;
+                }
+
+                .listado tr:nth-child(odd) {
+                    background-color: #EEEAE7;
+                }
+
+                .listado tr:nth-child(even) {
+                    background-color: #FFFFFF;
+                }
+
+                .listado th {
+                    background-color: #350133;
+                }
+
+                .listado td:first-child {
+                    color: #FC1231;
+                }
+
+                .listado tr:hover {
+                    background-color: #F7C7F7;
+                    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+                    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+                    box-shadow: 0 6px 6px -6px #0E1119;
+                }
+
+            td a {
+                color: #4B4A4B;
+            }
+
+                td a:hover {
+                    color: #FFFFFF;
+                }
+
+            .listado td.icono:hover {
+                background-color: #FC1231;
+                box-shadow: #BA0F26 -1px 1px, #BA0F26 -2px 2px, #BA0F26 -3px 3px, #BA0F26 -4px 4px, #BA0F26 -5px 5px, #BA0F26 -6px 6px;
+                transform: translate3d(6px, -6px, 0);
+                transition-delay: 0s;
+                transition-duration: 0.4s;
+                transition-property: all;
+                transition-timing-function: line;
+            }
+    </style>
+
+    <script>
+        var colors = new Array(
+            [62, 35, 255],
+            [60, 255, 60],
+            [255, 35, 98],
+            [45, 175, 230],
+            [255, 0, 255],
+            [255, 128, 0]);
+
+        var step = 0;
+        //color table indices for:
+        // current color left
+        // next color left
+        // current color right
+        // next color right
+        var colorIndices = [0, 1, 2, 3];
+
+        //transition speed
+        var gradientSpeed = 0.002;
+
+        function updateGradient() {
+
+            if ($ === undefined) return;
+
+            var c0_0 = colors[colorIndices[0]];
+            var c0_1 = colors[colorIndices[1]];
+            var c1_0 = colors[colorIndices[2]];
+            var c1_1 = colors[colorIndices[3]];
+
+            var istep = 1 - step;
+            var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+            var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+            var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+            var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
+
+            var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+            var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+            var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+            var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+
+            $('#gradient').css({
+                background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
+            }).css({
+                background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+            });
+
+            step += gradientSpeed;
+            if (step >= 1) {
+                step %= 1;
+                colorIndices[0] = colorIndices[1];
+                colorIndices[2] = colorIndices[3];
+
+                //pick two new target color indices
+                //do not pick the same as the current one
+                colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+                colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+
+            }
+        }
+
+        setInterval(updateGradient, 10);
+    </script>
